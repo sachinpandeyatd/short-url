@@ -100,5 +100,16 @@
             </div>
         </div>
     </div>
+
+    <div class="blur-effect"></div>
+    <div class="popup-box">
+        <div class="info-box">Please edit carefully, once you save it, you won't be able to edit it again!!</div>
+        <form action="#">
+            <label for="">Edit your shortened URL</label>
+            <input type="text" spellcheck="false" value="shoten.com/xyz">
+            <i class="copy-icon uil uil-copy-alt"></i>
+            <button>Save</button>
+        </form>
+    </div>
 </body>
 </html>
