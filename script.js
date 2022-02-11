@@ -30,7 +30,7 @@ shortenBtn.onclick = ()=>{
 
                 copyBtn.onclick = ()=>{
                     shortenURL.select();
-                    document.execCommand();
+                    document.execCommand("copy");
                 }
 
                 form2.onsubmit = (e)=>{

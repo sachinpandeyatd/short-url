@@ -69,7 +69,7 @@
                             </a>
                         </li>
                         <li><?php echo $row['clicks']; ?></li>
-                        <li><a href="php/delete.php">Delete</a></li>
+                        <li><a href="php/delete.php?id=<?php echo $row['shorten_url']; ?>">Delete</a></li>
                     </div>
                 <?php
             }
