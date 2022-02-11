@@ -5,8 +5,10 @@ fullURL = form.querySelector("input"),
 shortenBtn = form.querySelector("button"),
 blurEffect = document.querySelector(".blur-effect"),
 popupBox = document.querySelector(".popup-box"),
+form2 = popupBox.querySelector("form"),
 shortenURL = popupBox.querySelector("input"),
-saveBtn = popupBox.querySelector("button");
+saveBtn = popupBox.querySelector("button"),
+copyBtn = popupBox.querySelector(".copy-icon");
 
 form.onsubmit = (e)=>{
     e.preventDefault();
@@ -25,6 +27,11 @@ shortenBtn.onclick = ()=>{
 
                 let domain = "localhost/url-shortener/";
                 shortenURL.value = domain + data;
+
+                copyBtn.onclick = ()=>{
+                    shortenURL.select();
+                    document.execCommand();
+                }
 
                 saveBtn.onclick = ()=>{
                     location.reload();
