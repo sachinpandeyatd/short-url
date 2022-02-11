@@ -10,8 +10,12 @@
 
         $sql = mysqli_query($conn, "SELECT full_url FROM url WHERE shorten_url = '{$new_url}'");
         if(mysqli_num_rows($sql) > 0){
-            $full_url = mysqli_fetch_assoc($sql);
-            header("Location:".$full_url['full_url']);
+            $count_query = mysqli_query($conn, "UPDATE url SET clicks = clicks + 1 WHERE shorten_url = '{$new_url}'");
+
+            if($count_query){
+                $full_url = mysqli_fetch_assoc($sql);
+                header("Location:".$full_url['full_url']);
+            }
         }
     }
 ?>
@@ -65,7 +69,7 @@
                             </a>
                         </li>
                         <li><?php echo $row['clicks']; ?></li>
-                        <li><a href="#">Delete</a></li>
+                        <li><a href="php/delete.php">Delete</a></li>
                     </div>
                 <?php
             }

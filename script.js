@@ -33,6 +33,10 @@ shortenBtn.onclick = ()=>{
                     document.execCommand();
                 }
 
+                form2.onsubmit = (e)=>{
+                    e.preventDefault();
+                }
+
                 saveBtn.onclick = ()=>{
                     location.reload();
                 }
