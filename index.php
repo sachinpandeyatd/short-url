@@ -11,7 +11,7 @@
 <body>
     <div class="wrapper">
         <form action="">
-            <input type="text" name="url" placeholder="Enter URL" required>
+            <input type="text" name="full-url" placeholder="Enter URL" required>
             <i class="url-icon uil uil-link"></i>
             <button type="submit">Shorten</button>
         </form>
@@ -106,7 +106,7 @@
         <div class="info-box">Please edit carefully, once you save it, you won't be able to edit it again!!</div>
         <form action="#">
             <label for="">Edit your shortened URL</label>
-            <input type="text" spellcheck="false" value="shoten.com/xyz">
+            <input type="text" spellcheck="false" value="">
             <i class="copy-icon uil uil-copy-alt"></i>
             <button>Save</button>
         </form>
