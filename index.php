@@ -1,3 +1,16 @@
+<?php
+    if(isset($_GET['u'])){
+        include "php/config.php";
+        $u = mysqli_real_escape_string($conn, $_GET['u']);
+
+        $sql = mysqli_query($conn, "SELECT full_url FROM url WHERE shorten_url = '{$u}'");
+        if(mysqli_num_rows($sql) > 0){
+            $full_url = mysqli_fetch_assoc($sql);
+            header("Location:".$full_url['full_url']);
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
