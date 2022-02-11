@@ -1,6 +1,7 @@
 <?php
+    include "php/config.php";
+
     if(isset($_GET['u'])){
-        include "php/config.php";
         $u = mysqli_real_escape_string($conn, $_GET['u']);
 
         $sql = mysqli_query($conn, "SELECT full_url FROM url WHERE shorten_url = '{$u}'");
@@ -28,10 +29,14 @@
             <i class="url-icon uil uil-link"></i>
             <button type="submit">Shorten</button>
         </form>
-        <div class="count">
-            <span>Total Links: <span>10</span> & Total Clicks: <span>140</span></span>
-            <a href="#">Clear All</a>
-        </div>
+        <?php
+            $sql2 = mysqli_query($conn, "SELECT * FROM url ORDER BY id DESC");
+            if(mysqli_num_rows($sql2) > 0){
+            ?>
+            <div class="count">
+                <span>Total Links: <span>10</span> & Total Clicks: <span>140</span></span>
+                <a href="#">Clear All</a>
+            </div>
         <div class="urls-area">
             <div class="title">
                 <li>Shorten URL</li>
@@ -39,78 +44,19 @@
                 <li>Clicks</li>
                 <li>Action</li>
             </div>
-            <div class="data">
-                <li><a href="#">shorten.com/xyz</a></li>
-                <li>https://www.sachinpandeyatd.com</li>
-                <li>16</li>
-                <li><a href="#">Delete</a></li>
-            </div>
-            <div class="data">
-                <li><a href="#">shorten.com/xyz</a></li>
-                <li>https://www.sachinpandeyatd.com</li>
-                <li>16</li>
-                <li><a href="#">Delete</a></li>
-            </div>
-            <div class="data">
-                <li><a href="#">shorten.com/xyz</a></li>
-                <li>https://www.sachinpandeyatd.com</li>
-                <li>16</li>
-                <li><a href="#">Delete</a></li>
-            </div>
-            <div class="data">
-                <li><a href="#">shorten.com/xyz</a></li>
-                <li>https://www.sachinpandeyatd.com</li>
-                <li>16</li>
-                <li><a href="#">Delete</a></li>
-            </div>
-            <div class="data">
-                <li><a href="#">shorten.com/xyz</a></li>
-                <li>https://www.sachinpandeyatd.com</li>
-                <li>16</li>
-                <li><a href="#">Delete</a></li>
-            </div>
-            <div class="data">
-                <li><a href="#">shorten.com/xyz</a></li>
-                <li>https://www.sachinpandeyatd.com</li>
-                <li>16</li>
-                <li><a href="#">Delete</a></li>
-            </div>
-            <div class="data">
-                <li><a href="#">shorten.com/xyz</a></li>
-                <li>https://www.sachinpandeyatd.com</li>
-                <li>16</li>
-                <li><a href="#">Delete</a></li>
-            </div>
-            <div class="data">
-                <li><a href="#">shorten.com/xyz</a></li>
-                <li>https://www.sachinpandeyatd.com</li>
-                <li>16</li>
-                <li><a href="#">Delete</a></li>
-            </div>
-            <div class="data">
-                <li><a href="#">shorten.com/xyz</a></li>
-                <li>https://www.sachinpandeyatd.com</li>
-                <li>16</li>
-                <li><a href="#">Delete</a></li>
-            </div>
-            <div class="data">
-                <li><a href="#">shorten.com/xyz</a></li>
-                <li>https://www.sachinpandeyatd.com</li>
-                <li>16</li>
-                <li><a href="#">Delete</a></li>
-            </div>
-            <div class="data">
-                <li><a href="#">shorten.com/xyz</a></li>
-                <li>https://www.sachinpandeyatd.com</li>
-                <li>16</li>
-                <li><a href="#">Delete</a></li>
-            </div>
-            <div class="data">
-                <li><a href="#">shorten.com/xyz</a></li>
-                <li>https://www.sachinpandeyatd.com</li>
-                <li>16</li>
-                <li><a href="#">Delete</a></li>
-            </div>
+            <?php
+            while($row = mysqli_fetch_assoc($sql2)){
+                ?>
+                    <div class="data">
+                        <li><a href="#"><?php echo $row['shorten_url']; ?></a></li>
+                        <li><?php echo $row['full_url']; ?></li>
+                        <li><?php echo $row['clicks']; ?></li>
+                        <li><a href="#">Delete</a></li>
+                    </div>
+                <?php
+            }
+        }
+        ?>
         </div>
     </div>
 
