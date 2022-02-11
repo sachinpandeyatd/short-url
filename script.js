@@ -5,7 +5,8 @@ fullURL = form.querySelector("input"),
 shortenBtn = form.querySelector("button"),
 blurEffect = document.querySelector(".blur-effect"),
 popupBox = document.querySelector(".popup-box"),
-shortenURL = popupBox.querySelector("input");
+shortenURL = popupBox.querySelector("input"),
+saveBtn = popupBox.querySelector("button");
 
 form.onsubmit = (e)=>{
     e.preventDefault();
@@ -22,8 +23,12 @@ shortenBtn.onclick = ()=>{
                 blurEffect.style.display = "block";
                 popupBox.classList.add("show");
 
-                let domain = "localhost/url-shortener?u=";
+                let domain = "localhost/url-shortener/";
                 shortenURL.value = domain + data;
+
+                saveBtn.onclick = ()=>{
+                    location.reload();
+                }
             }else{
                 alert(data);
             }

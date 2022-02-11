@@ -1,10 +1,14 @@
 <?php
     include "php/config.php";
 
-    if(isset($_GET['u'])){
-        $u = mysqli_real_escape_string($conn, $_GET['u']);
+    $new_url = "";
+    if(isset($_GET)){
+        foreach($_GET as $key=>$val){
+            $u = mysqli_escape_string($conn, $key);
+            $new_url = str_replace('/', '', $u);
+        }
 
-        $sql = mysqli_query($conn, "SELECT full_url FROM url WHERE shorten_url = '{$u}'");
+        $sql = mysqli_query($conn, "SELECT full_url FROM url WHERE shorten_url = '{$new_url}'");
         if(mysqli_num_rows($sql) > 0){
             $full_url = mysqli_fetch_assoc($sql);
             header("Location:".$full_url['full_url']);
@@ -48,7 +52,7 @@
             while($row = mysqli_fetch_assoc($sql2)){
                 ?>
                     <div class="data">
-                        <li><a target="_blank" href="<?php echo '?u='.$row['shorten_url']; ?>"><?php echo 'localhost/url-shortener?u='.$row['shorten_url']; ?></a></li>
+                        <li><a target="_blank" href="<?php echo $row['shorten_url']; ?>"><?php echo 'localhost/url-shortener/'.$row['shorten_url']; ?></a></li>
                         <li>
                             <a target="_blank" href="<?php echo $row['full_url']; ?>">
                             <?php 
