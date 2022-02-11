@@ -48,8 +48,18 @@
             while($row = mysqli_fetch_assoc($sql2)){
                 ?>
                     <div class="data">
-                        <li><a href="#"><?php echo $row['shorten_url']; ?></a></li>
-                        <li><?php echo $row['full_url']; ?></li>
+                        <li><a target="_blank" href="<?php echo '?u='.$row['shorten_url']; ?>"><?php echo 'localhost/url-shortener?u='.$row['shorten_url']; ?></a></li>
+                        <li>
+                            <a target="_blank" href="<?php echo $row['full_url']; ?>">
+                            <?php 
+                                if(strlen($row['full_url']) > 100){
+                                    echo substr($row['full_url'], 0, 65).'...';
+                                }else{
+                                    echo $row['full_url'];
+                                }
+                            ?>
+                            </a>
+                        </li>
                         <li><?php echo $row['clicks']; ?></li>
                         <li><a href="#">Delete</a></li>
                     </div>
